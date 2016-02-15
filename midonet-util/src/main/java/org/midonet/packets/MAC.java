@@ -18,10 +18,7 @@ package org.midonet.packets;
 
 import java.util.Random;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-
-import org.midonet.util.collection.WeakObjectPool;
+//import org.midonet.util.collection.WeakObjectPool;
 
 /** Representation of a mac address. Utility class for a Ethernet-type Media
  *  Access Control address ("Hardware" or "data link" or "link layer" address).
@@ -33,7 +30,7 @@ import org.midonet.util.collection.WeakObjectPool;
  *          address representation as a string reading from left to right.
  */
 public class MAC {
-    private static WeakObjectPool<MAC> INSTANCE_POOL = new WeakObjectPool<>();
+    //private static WeakObjectPool<MAC> INSTANCE_POOL = new WeakObjectPool<MAC>();
     public static MAC ALL_ZEROS = MAC.fromAddress(new byte[6]);
 
     private static final Random rand = new Random();
@@ -92,20 +89,21 @@ public class MAC {
         return addr;
     }
 
-    @JsonCreator
     public static MAC fromString(String str) {
-        MAC mac = new MAC(MAC.stringToLong(str)).intern();
+        //MAC mac = new MAC(MAC.stringToLong(str)).intern();
+        MAC mac = new MAC(MAC.stringToLong(str));
         mac.sAddr = str;
         return mac;
     }
 
     public static MAC fromAddress(byte[] rhs) {
-        return new MAC(rhs).intern();
+        //return new MAC(rhs).intern();
+        return new MAC(rhs);
     }
 
-    public MAC intern() {
-        return INSTANCE_POOL.sharedRef(this);
-    }
+    //public MAC intern() {
+    //    return INSTANCE_POOL.sharedRef(this);
+    //}
 
     public static MAC random() {
         return new MAC(rand.nextLong() &
@@ -120,7 +118,6 @@ public class MAC {
         return !unicast();
     }
 
-    @JsonValue
     @Override
     public String toString() {
         if (this.sAddr == null) {

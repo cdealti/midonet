@@ -184,7 +184,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.1'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
         classpath 'net.saliman:gradle-cobertura-plugin:2.2.8'
         classpath 'com.andrewkroh.gradle:gradle-protobuf-plugin:0.3.0'
         classpath "com.github.nullstress:DependencyAnalysisPlugin:1.0.3"
